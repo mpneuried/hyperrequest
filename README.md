@@ -9,8 +9,6 @@ A wrapper arround hyperquest to handle the results
 
 [![NPM](https://nodei.co/npm/hyperrequest.png?downloads=true&stars=true)](https://nodei.co/npm/hyperrequest/)
 
-*Written in coffee-script*
-
 **INFO: all examples are written in coffee-script**
 
 ## Install
