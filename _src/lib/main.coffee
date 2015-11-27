@@ -9,10 +9,6 @@
 # This is a drop in replacement to replace the request module with te hyperquest module to solve the limit of five concurrent connections.
 # 
 
-#export this class
-module.exports = Hyperrequest
-
-
 # node modules
 extend = require( "extend" )
 querystring = require( "querystring" )

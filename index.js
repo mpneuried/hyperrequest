@@ -1,5 +1,5 @@
 (function() {
-  exports.version = '0.0.11';
+  exports.version = '0.0.2';
 
   module.exports = require('./lib/main');
 

@@ -32,7 +32,7 @@ module.exports = (grunt) ->
 			pckg:
 				options:
 					globals:
-						version: "0.0.11"
+						version: "<%=pkg.version%>"
 
 					prefix: "@@"
 					suffix: ''
