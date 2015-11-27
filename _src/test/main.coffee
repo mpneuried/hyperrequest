@@ -4,6 +4,8 @@ Module = require( "../." )
 
 _moduleInst = null
 
+# TODO spin up a express server and test the module
+
 describe "----- hyperrequest TESTS -----", ->
 
 	before ( done )->
