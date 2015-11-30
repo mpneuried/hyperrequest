@@ -9,32 +9,66 @@ A wrapper arround hyperquest to handle the results
 
 [![NPM](https://nodei.co/npm/hyperrequest.png?downloads=true&stars=true)](https://nodei.co/npm/hyperrequest/)
 
-**INFO: all examples are written in coffee-script**
-
 ## Install
 
 ```
   npm install hyperrequest
 ```
 
-## Initialize
+## Usage
 
+**Basic example**
+```js
+var hrrequest = require( "hyperrequest" );
+
+hrrequest( { url: "http://www.exapme.com" }, function( err, resp ){
+    /*handle response*/
+});
 ```
-  // TODO init code
+
+**Detailed example**
+
+```js
+var hrrequest = require( "hyperrequest" );
+
+var opts = {
+    url: "http://www.myapi.com/path/api/v1", // The path to request including `http://`. Alternative keys : `uri` or `path`
+    method: "POST", // http method
+    headers: { // http headers object
+        "Content-type": "application/json"
+    },
+    json: { "foo": 23, "bar": [ 42, "buzz" ] }, // Only relevant for method `POST, `PUT` or `PATCH`. This will be stringified before transmission.
+    body: "ABC" // // Only relevant if `json` is not defined and for method `POST, `PUT` or `PATCH`.
+};
+
+hrrequest( opts, function( err, resp ){
+    if( err ){
+        // handle the error
+        return
+    }
+    // the result is a regular node-js response object.
+    console.log( resp.body ) // The result will be placed inside `body`. If the content-type is `application/json` it tries to parse it and returns the parsed data
+    
+});
 ```
 
 **Options** 
 
-- **foo** : *( `String` required )* TODO option description
-- **bar** : *( `Number` optional: default = `123` )* TODO option description
+- **url** : *( `String` required )* The path to request including `http://`. Alternative keys : `uri` or `path`
+- **method** : *( `String` optional: default = `GET`; )* The http method
+- **headers** : *( `Object` optional )* The http headers object
+- **json** : *( `Any` optional )* JSON data to send. This will be stringified and used as body before transmission. Only relevant for method `POST, `PUT` or `PATCH`. 
+- **body** : *( `String|Buffer` optional )* Body data to send. Only relevant if `json` is not defined and for method `POST, `PUT` or `PATCH`.
 
 ## Todos
 
- * implement test cases to check for correct template generation.
+ * more Tests ;-)
 
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
+|0.0.3|2015-11-30|Bugfix; optimizations; Added tests|
+|0.0.2|2015-11-27|Small bugfix|
 |0.0.1|2015-11-27|Initial commit|
 
 [![NPM](https://nodei.co/npm-dl/hyperrequest.png?months=6)](https://nodei.co/npm/hyperrequest/)

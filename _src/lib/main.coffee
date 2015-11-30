@@ -10,7 +10,6 @@
 # 
 
 # node modules
-extend = require( "extend" )
 querystring = require( "querystring" )
 StringDecoder = require('string_decoder').StringDecoder
 http = require( "http" )
@@ -21,9 +20,12 @@ hyperquest = require( "hyperquest" )
 # additional upgrade the max sockets. 
 http.globalAgent.maxSockets = 30
 
+isString = ( vr )->
+	return typeof vr is 'string' or vr instanceof String
+
 hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 	defaults: =>
-		@extend super, 
+		@extend super,
 			method: "GET"
 			payloadMethods: [ "POST", "PUT", "PATCH" ]
 
@@ -40,7 +42,7 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 				cb( _err )
 				return
 
-			@log "debug", "run request", [_path, _opts, _body, _body?.toString() ]
+			@debug "run request", _path, _opts, _body, _body?.toString()
 			request = hyperquest( _path, _opts )
 
 			@_responseHandler( cb, request, _path, _opts )
@@ -52,7 +54,7 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 				request.end()
 
 			return
-		return 
+		return
 
 	prepareBody: ( opt, cb )=>
 		_body = null
@@ -60,7 +62,7 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 
 		if opt.json?
 		# prepare raw body
-			if _.isString( opt.json )
+			if isString( opt.json )
 				_body = new Buffer( opt.json )
 			else
 
@@ -78,10 +80,10 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 		# prepare raw body
 			if Buffer.isBuffer( opt.body )
 				_body = opt.body
-			else if _.isString( opt.body )
+			else if isString( opt.body )
 				_body = new Buffer( opt.body )
-			else 
-				@log "warning", "used body unlike Buffer or String!", opt.body
+			else
+				@warning "used body unlike Buffer or String!", opt.body
 				_body = opt.body
 
 		if _body?.length
@@ -94,7 +96,7 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 		_url = opt.url or opt.uri or opt.path
 		_qs = ""
 		if opt.qs?
-			if _.isString( opt.qs )
+			if isString( opt.qs )
 				_qs = opt.qs
 			else
 				_qs = querystring.stringify( opt.qs )
@@ -108,7 +110,7 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 			return _url
 
 	prepareOpts: ( opt, _body, _forcedHeaders )=>
-		_method = opt.method or @config.method
+		_method = opt.method?.toUpperCase() or @config.method
 		if _body? and _method not in @config.payloadMethods
 			@_handleError( null, "invalid-method" )
 			return
@@ -124,15 +126,15 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 
 		request.on "response", ( response )=>
 			res = response
-			@log "debug", "request response", [_path, _opts, _body, _body?.toString() ]
+			@debug "request response", _path, _opts, _body, _body?.toString()
 			return
 
-		request.on "data", ( chunk )=>
-			_body += decoder.write( chunk ) 
+		request.on "data", ( chunk )->
+			_body += decoder.write( chunk )
 			return
 
 		request.on "error", ( chunk )=>
-			@log "warning", "request error", [chunk.toString()]
+			@warning "request error", chunk.toString()
 			if chunk?.code in [ "ECONNREFUSED", "EHOSTUNREACH" ]
 				cb( chunk )
 				return
@@ -140,32 +142,31 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 			return
 
 		request.on "end", =>
-			@log "debug", "request end", [_body, _err]
+			@debug "request end", _body, _err
 			if _err
 				cb( _err, res )
 				return
 
-			@log "debug", "request result", [_body]
-			#console.log _body
-			if _opts?[ "Content-type" ]?.toLowerCase() is "application/json"
+			@debug "request result", _body
+			if _opts?[ "Content-type" ]?.toLowerCase() is "application/json" or res.headers["content-type"].indexOf( "application/json" ) >= 0
 				try
 					res.body = JSON.parse( _body )
-			else if _body?.length 
+			else if _body?.length
 				res.body = _body
 
 			cb( null, res )
 			return
 
 		request.on "close", =>
-			@log "debug", "request close", [_body, _err]
+			@debug "request close", _body, _err
 			return
 		
 		return
 
 	ERRORS: =>
-		@extend super, 
+		@extend super,
 			"json-stringify": [ 500, "Cannot stringify the given `json` data." ]
-			"invalid-method": [ 500, "If you pass body data via `body` or `json` you have to use a method of `POST, `PUT` or `PATCH" ]
+			"invalid-method": [ 500, "If you pass body data via `body` or `json` you have to use a method of `POST, `PUT` or `PATCH`" ]
 )()
 
 module.exports = hrquest.request

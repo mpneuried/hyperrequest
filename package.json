@@ -1,6 +1,6 @@
 {
   "name": "hyperrequest",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A wrapper arround hyperquest to handle the results",
   "keywords": [],
   "homepage": "https://github.com/mpneuried/hyperrequest",
@@ -24,16 +24,20 @@
   "license": "MIT",
   "dependencies": {
     "hyperquest": "^1.2.0",
-    "mpbasic": "0.0.x"
+    "mpbasic": "0.0.x",
+    "qs": "^6.0.1"
   },
   "devDependencies": {
-    "should": "4.3.x",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
     "grunt": "0.4.x",
-    "grunt-regarde": "*",
+    "grunt-contrib-clean": "*",
     "grunt-contrib-coffee": "*",
+    "grunt-docker": "0.0.x",
     "grunt-include-replace": "*",
     "grunt-mocha-cli": "*",
-    "grunt-docker": "0.0.x",
-    "grunt-contrib-clean": "*"
+    "grunt-regarde": "*",
+    "morgan": "^1.6.1",
+    "should": "4.3.x"
   }
 }
