@@ -55,7 +55,7 @@ app.put "/test6", jsonParser, ( req, res )->
 	res.status(200).send( "OK" )
 	return
 	
-app.del "/test7", urlencodedParser, ( req, res )->
+app.delete "/test7", urlencodedParser, ( req, res )->
 	_resp = {}
 	for _k, _v of req.query
 		if _v.match( /^\d+$/ )

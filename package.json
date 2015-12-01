@@ -1,6 +1,6 @@
 {
   "name": "hyperrequest",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A wrapper arround hyperquest to handle the results",
   "keywords": [],
   "homepage": "https://github.com/mpneuried/hyperrequest",
@@ -24,8 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "hyperquest": "^1.2.0",
-    "mpbasic": "0.0.x",
-    "qs": "^6.0.1"
+    "mpbasic": "0.0.x"
   },
   "devDependencies": {
     "body-parser": "^1.14.1",

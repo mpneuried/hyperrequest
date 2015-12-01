@@ -67,7 +67,8 @@ hrrequest( opts, function( err, resp ){
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
-|0.0.3|2015-11-30|Bugfix; optimizations; Added tests|
+|0.0.4|2015-12-01|removed deprecated dependency; added code docs|
+|0.0.3|2015-11-30|Bugfixes; Optimizations; Added tests; Added docs|
 |0.0.2|2015-11-27|Small bugfix|
 |0.0.1|2015-11-27|Initial commit|
 
