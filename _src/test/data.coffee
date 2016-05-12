@@ -33,3 +33,4 @@ module.exports =
 	test3: randomobj(0, { maxDepth:3 } )
 	test4: randomobj(0, { maxDepth:1, maxComplex:3, maxObjSize:5 } )
 	test5: randomobj(0, { maxDepth:0, maxComplex:1, maxObjSize:13, maxStringLength:1337 } )
+	auth1: [ "foo", "secure42" ]

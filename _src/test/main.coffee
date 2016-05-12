@@ -153,6 +153,44 @@ describe "----- hyperrequest TESTS -----", ->
 				return
 			return
 
+		it "post with auth and body", ( done )->
+			opts =
+				uri: "http://localhost:#{PORT}/test9"
+				method: "Post"
+				json: testData.test4
+				auth:
+					user: testData.auth1[0]
+					pass: testData.auth1[1]
+				qs:
+					testData.test5
+			
+			hrr opts, ( err, resp )->
+				throw err if err
+				resp.should.have.property( "body" )
+				resp.body.should.eql( testData.test5 )
+				done()
+				return
+			return
+
+		it "post with auth and body but different auth syntax", ( done )->
+			opts =
+				uri: "http://localhost:#{PORT}/test9"
+				method: "Post"
+				json: testData.test4
+				auth:
+					username: testData.auth1[0]
+					password: testData.auth1[1]
+				qs:
+					testData.test5
+			
+			hrr opts, ( err, resp )->
+				throw err if err
+				resp.should.have.property( "body" )
+				resp.body.should.eql( testData.test5 )
+				done()
+				return
+			return
+
 		return
 	return
 

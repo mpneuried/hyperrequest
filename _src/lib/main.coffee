@@ -115,6 +115,14 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 			@_handleError( null, "invalid-method" )
 			return
 
+		# ig the auth option is set convert it to a BAsic athentication header
+		if opt?.auth?
+			_user = opt.auth.user or opt.auth.username
+			_pw = opt.auth.pass or opt.auth.password or ""
+			if _user?
+				_enc = new Buffer( ( _user + ":" + _pw ), "utf8" ).toString( "base64" )
+				_forcedHeaders[ "Authorization" ] = "Basic " + _enc
+
 		method: _method
 		headers: @extend( {}, opt.headers or {}, _forcedHeaders )
 

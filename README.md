@@ -59,6 +59,9 @@ hrrequest( opts, function( err, resp ){
 - **headers** : *( `Object` optional )* The http headers object
 - **json** : *( `Any` optional )* JSON data to send. This will be stringified and used as body before transmission. Only relevant for method `POST, `PUT` or `PATCH`. 
 - **body** : *( `String|Buffer` optional )* Body data to send. Only relevant if `json` is not defined and for method `POST, `PUT` or `PATCH`.
+- **auth** : *( `Object` optional )* Add an basic header authentication.
+    - **auth.(user|username)** : *( `String` )* The username for the authentication.
+    - **auth.(pass|password)** : *( `String` )* The password for the authentication.
 
 ## Todos
 
@@ -67,6 +70,7 @@ hrrequest( opts, function( err, resp ){
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
+|0.1.0|2016-05-12|Added option to use basic auth. Updated dependencies and dev environment with docker tests for a list of node versions, removed Code docs from repository|
 |0.0.4|2015-12-01|removed deprecated dependency; added code docs|
 |0.0.3|2015-11-30|Bugfixes; Optimizations; Added tests; Added docs|
 |0.0.2|2015-11-27|Small bugfix|
