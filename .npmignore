@@ -1,6 +1,7 @@
 /_src
 /_docs
 /test
+/dockertests
 /node_modules
 Gruntfile.*
 *.sublime*
