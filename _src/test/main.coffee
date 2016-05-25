@@ -43,6 +43,9 @@ describe "----- hyperrequest TESTS -----", ->
 			
 			hrr opts, ( err, resp )->
 				throw err if err
+				resp.should.have.property( "statusCode" )
+				resp.statusCode.should.eql( 200 )
+
 				resp.should.have.property( "body" )
 				resp.body.should.equal( "OK" )
 				done()
@@ -56,6 +59,9 @@ describe "----- hyperrequest TESTS -----", ->
 			
 			hrr opts, ( err, resp )->
 				throw err if err
+				resp.should.have.property( "statusCode" )
+				resp.statusCode.should.eql( 200 )
+
 				resp.should.have.property( "body" )
 				resp.body.should.equal( testData.test2 )
 				done()
@@ -70,6 +76,9 @@ describe "----- hyperrequest TESTS -----", ->
 			
 			hrr opts, ( err, resp )->
 				throw err if err
+				resp.should.have.property( "statusCode" )
+				resp.statusCode.should.eql( 200 )
+
 				resp.should.have.property( "body" )
 				resp.body.should.eql( testData.test3 )
 				done()
@@ -86,6 +95,9 @@ describe "----- hyperrequest TESTS -----", ->
 			
 			hrr opts, ( err, resp )->
 				throw err if err
+				resp.should.have.property( "statusCode" )
+				resp.statusCode.should.eql( 200 )
+
 				resp.should.have.property( "body" )
 				resp.body.should.equal( "OK" )
 				done()
@@ -100,6 +112,9 @@ describe "----- hyperrequest TESTS -----", ->
 			
 			hrr opts, ( err, resp )->
 				throw err if err
+				resp.should.have.property( "statusCode" )
+				resp.statusCode.should.eql( 200 )
+
 				resp.should.have.property( "body" )
 				resp.body.should.eql( testData.test5 )
 				done()
@@ -116,6 +131,9 @@ describe "----- hyperrequest TESTS -----", ->
 			
 			hrr opts, ( err, resp )->
 				throw err if err
+				resp.should.have.property( "statusCode" )
+				resp.statusCode.should.eql( 200 )
+
 				resp.should.have.property( "body" )
 				resp.body.should.equal( "OK" )
 				done()
@@ -131,6 +149,9 @@ describe "----- hyperrequest TESTS -----", ->
 			
 			hrr opts, ( err, resp )->
 				throw err if err
+				resp.should.have.property( "statusCode" )
+				resp.statusCode.should.eql( 200 )
+
 				resp.should.have.property( "body" )
 				resp.body.should.eql( testData.test5 )
 				done()
@@ -147,6 +168,9 @@ describe "----- hyperrequest TESTS -----", ->
 			
 			hrr opts, ( err, resp )->
 				throw err if err
+				resp.should.have.property( "statusCode" )
+				resp.statusCode.should.eql( 200 )
+
 				resp.should.have.property( "body" )
 				resp.body.should.eql( testData.test5 )
 				done()
@@ -166,6 +190,9 @@ describe "----- hyperrequest TESTS -----", ->
 			
 			hrr opts, ( err, resp )->
 				throw err if err
+				resp.should.have.property( "statusCode" )
+				resp.statusCode.should.eql( 200 )
+
 				resp.should.have.property( "body" )
 				resp.body.should.eql( testData.test5 )
 				done()
@@ -185,8 +212,29 @@ describe "----- hyperrequest TESTS -----", ->
 			
 			hrr opts, ( err, resp )->
 				throw err if err
+				resp.should.have.property( "statusCode" )
+				resp.statusCode.should.eql( 200 )
+
 				resp.should.have.property( "body" )
 				resp.body.should.eql( testData.test5 )
+				done()
+				return
+			return
+
+		it "post with empty response", ( done )->
+			opts =
+				uri: "http://localhost:#{PORT}/test10"
+				method: "Post"
+				json: testData.test6
+				qs:
+					testData.test5
+			
+			hrr opts, ( err, resp )->
+				throw err if err
+				resp.should.have.property( "statusCode" )
+				resp.statusCode.should.eql( 204 )
+				
+				should.not.exist resp.body
 				done()
 				return
 			return

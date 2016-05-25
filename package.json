@@ -1,6 +1,6 @@
 {
   "name": "hyperrequest",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A wrapper arround hyperquest to handle the results",
   "keywords": [],
   "homepage": "https://github.com/mpneuried/hyperrequest",

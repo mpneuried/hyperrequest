@@ -70,6 +70,7 @@ hrrequest( opts, function( err, resp ){
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
+|0.1.1|2016-05-25|fixed handling of empty content 204|
 |0.1.0|2016-05-12|Added option to use basic auth. Updated dependencies and dev environment with docker tests for a list of node versions, removed Code docs from repository|
 |0.0.4|2015-12-01|removed deprecated dependency; added code docs|
 |0.0.3|2015-11-30|Bugfixes; Optimizations; Added tests; Added docs|

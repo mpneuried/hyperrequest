@@ -156,7 +156,9 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 				return
 
 			@debug "request result", _body
-			if _opts?[ "Content-type" ]?.toLowerCase() is "application/json" or res.headers["content-type"].indexOf( "application/json" ) >= 0
+			if not _body?.length
+				res.body = null
+			else if _opts?[ "Content-type" ]?.toLowerCase() is "application/json" or res.headers?["content-type"].indexOf( "application/json" ) >= 0
 				try
 					res.body = JSON.parse( _body )
 			else if _body?.length

@@ -112,7 +112,7 @@ app.post "/test9", urlencodedParser, jsonParser, ( req, res )->
 	res.status(200).json( _resp )
 	return
 
-app.post "/test10", ( req, res )->
+app.post "/test10", urlencodedParser, jsonParser, ( req, res )->
 	_resp = {}
 	for _k, _v of req.query
 		if _v.match( /^\d+$/ )
@@ -121,12 +121,13 @@ app.post "/test10", ( req, res )->
 			_resp[ _k ] = _v	
 	try
 		req.should.have.property( "body" )
-		req.body.should.eql( testData.test4 )
+		req.body.should.eql( testData.test6 )
 	catch _err
 		console.error _err
 		res.status( 500 ).send( _err )
 		return
-	res.status(204).send()
+		
+	res.sendStatus(204)
 	return
 
 server = app.listen 8042, ->
