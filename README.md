@@ -2,6 +2,7 @@ hyperrequest
 ============
 
 [![Build Status](https://secure.travis-ci.org/mpneuried/hyperrequest.png?branch=master)](http://travis-ci.org/mpneuried/hyperrequest)
+[![Windows Tests](https://img.shields.io/appveyor/ci/mpneuried/hyperrequest.svg?label=Windows%20Test)]()
 [![Build Status](https://david-dm.org/mpneuried/hyperrequest.png)](https://david-dm.org/mpneuried/hyperrequest)
 [![NPM version](https://badge.fury.io/js/hyperrequest.png)](http://badge.fury.io/js/hyperrequest)
 
