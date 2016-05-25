@@ -112,6 +112,23 @@ app.post "/test9", urlencodedParser, jsonParser, ( req, res )->
 	res.status(200).json( _resp )
 	return
 
+app.post "/test10", ( req, res )->
+	_resp = {}
+	for _k, _v of req.query
+		if _v.match( /^\d+$/ )
+			_resp[ _k ] = parseInt( _v, 10 )
+		else
+			_resp[ _k ] = _v	
+	try
+		req.should.have.property( "body" )
+		req.body.should.eql( testData.test4 )
+	catch _err
+		console.error _err
+		res.status( 500 ).send( _err )
+		return
+	res.status(204).send()
+	return
+
 server = app.listen 8042, ->
 	port = server.address().port
 	console.log( "Listening on port %s", port )
