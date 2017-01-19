@@ -93,6 +93,7 @@ app.post "/test9", urlencodedParser, jsonParser, ( req, res )->
 			_resp[ _k ] = _v
 	
 	if not req.headers[ "authorization" ]?
+		console.error "missing authorization header"
 		res.status( 500 ).send( new Error( "missing authorization header" ) )
 		return
 

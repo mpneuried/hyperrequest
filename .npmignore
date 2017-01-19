@@ -10,3 +10,5 @@ config*.json
 deploy.json
 .editorconfig
 .travis.yml
+*-cov/
+*coverage/

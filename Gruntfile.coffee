@@ -61,7 +61,5 @@ module.exports = (grunt) ->
 	grunt.registerTask "b", "build"
 	grunt.registerTask "t", "test"
 
-
 	# build the project
 	grunt.registerTask "build", [ "clear", "coffee:base", "includereplace" ]
-	grunt.registerTask "build-dev", [ "clear", "coffee:base", "docs", "test" ]

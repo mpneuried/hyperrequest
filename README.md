@@ -2,9 +2,12 @@ hyperrequest
 ============
 
 [![Build Status](https://secure.travis-ci.org/mpneuried/hyperrequest.png?branch=master)](http://travis-ci.org/mpneuried/hyperrequest)
-[![Windows Tests](https://img.shields.io/appveyor/ci/mpneuried/hyperrequest.svg?label=Windows%20Test)]()
-[![Build Status](https://david-dm.org/mpneuried/hyperrequest.png)](https://david-dm.org/mpneuried/hyperrequest)
-[![NPM version](https://badge.fury.io/js/hyperrequest.png)](http://badge.fury.io/js/hyperrequest)
+[![Windows Tests](https://img.shields.io/appveyor/ci/mpneuried/hyperrequest.svg?label=WindowsTest)](https://ci.appveyor.com/project/mpneuried/hyperrequest)
+[![Coveralls Coverage](https://img.shields.io/coveralls/mpneuried/hyperrequest.svg)](https://coveralls.io/github/mpneuried/hyperrequest)
+
+[![Deps Status](https://david-dm.org/mpneuried/hyperrequest.png)](https://david-dm.org/mpneuried/hyperrequest)
+[![npm version](https://badge.fury.io/js/hyperrequest.png)](http://badge.fury.io/js/hyperrequest)
+[![npm downloads](https://img.shields.io/npm/dt/hyperrequest.svg?maxAge=2592000)](https://nodei.co/npm/hyperrequest/)
 
 A wrapper arround hyperquest to handle the results
 
@@ -71,6 +74,7 @@ hrrequest( opts, function( err, resp ){
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
+|0.1.2|2017-01-19|fixed bug when receiving no content-type; Updated and optimized dev env.|
 |0.1.1|2016-05-25|fixed handling of empty content 204|
 |0.1.0|2016-05-12|Added option to use basic auth. Updated dependencies and dev environment with docker tests for a list of node versions, removed Code docs from repository|
 |0.0.4|2015-12-01|removed deprecated dependency; added code docs|
