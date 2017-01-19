@@ -37,6 +37,7 @@
     "grunt-contrib-watch": "1.x",
     "morgan": "1.7.x",
     "should": "11.1.x",
+    "mocha": "3.2.x",
     "coffee-coverage": "1.x",
     "coffee-script": "1.12.x",
     "coveralls": "2.11.x",
