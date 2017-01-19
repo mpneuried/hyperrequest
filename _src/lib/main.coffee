@@ -27,7 +27,7 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 	defaults: =>
 		@extend super,
 			method: "GET"
-			payloadMethods: [ "POST", "PUT", "PATCH" ]
+			payloadMethods: [ "POST", "PUT", "PATCH", "DELETE" ]
 
 	request: ( opt, cb )=>
 		
@@ -158,7 +158,7 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 			@debug "request result", _body
 			if not _body?.length
 				res.body = null
-			else if _opts?[ "Content-type" ]?.toLowerCase() is "application/json" or res.headers?["content-type"].indexOf( "application/json" ) >= 0
+			else if _opts?[ "Content-type" ]?.toLowerCase() is "application/json" or res.headers?["content-type"]?.indexOf( "application/json" ) >= 0
 				try
 					res.body = JSON.parse( _body )
 			else if _body?.length
