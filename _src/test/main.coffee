@@ -239,6 +239,24 @@ describe "----- hyperrequest TESTS -----", ->
 				return
 			return
 
+		it "post with defect header response", ( done )->
+			opts =
+				uri: "http://localhost:#{PORT}/test11"
+				method: "Post"
+				json: testData.test6
+				qs:
+					testData.test5
+			
+			hrr opts, ( err, resp )->
+				throw err if err
+				resp.should.have.property( "statusCode" )
+				resp.statusCode.should.eql( 200 )
+				
+				should.not.exist resp.body
+				done()
+				return
+			return
+
 		return
 	return
 

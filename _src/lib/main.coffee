@@ -92,7 +92,7 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 		cb( null, _body, _fHeaders )
 		return
 
-	preparePath: ( opt )=>
+	preparePath: ( opt )->
 		_url = opt.url or opt.uri or opt.path
 		_qs = ""
 		if opt.qs?
@@ -155,10 +155,10 @@ hrquest = new ( class HyperRequest extends require( "mpbasic" )()
 				cb( _err, res )
 				return
 
-			@debug "request result", _body
+			@debug "request result", res.statusCode, res.headers, _body
 			if not _body?.length
 				res.body = null
-			else if _opts?[ "Content-type" ]?.toLowerCase() is "application/json" or res.headers?["content-type"]?.indexOf( "application/json" ) >= 0
+			else if _opts?[ "Content-type" ]?.toLowerCase() is "application/json" or res.headers?["content-type"]?.indexOf?( "application/json" ) >= 0
 				try
 					res.body = JSON.parse( _body )
 			else if _body?.length

@@ -119,7 +119,7 @@ app.post "/test10", urlencodedParser, jsonParser, ( req, res )->
 		if _v.match( /^\d+$/ )
 			_resp[ _k ] = parseInt( _v, 10 )
 		else
-			_resp[ _k ] = _v	
+			_resp[ _k ] = _v
 	try
 		req.should.have.property( "body" )
 		req.body.should.eql( testData.test6 )
@@ -129,6 +129,25 @@ app.post "/test10", urlencodedParser, jsonParser, ( req, res )->
 		return
 		
 	res.sendStatus(204)
+	return
+
+app.post "/test11", urlencodedParser, jsonParser, ( req, res )->
+	_resp = {}
+	for _k, _v of req.query
+		if _v.match( /^\d+$/ )
+			_resp[ _k ] = parseInt( _v, 10 )
+		else
+			_resp[ _k ] = _v
+	try
+		req.should.have.property( "body" )
+		req.body.should.eql( testData.test6 )
+	catch _err
+		console.error _err
+		res.status( 500 ).send( _err )
+		return
+	
+	res.writeHead( 200, { "content-type": null } )
+	res.send()
 	return
 
 server = app.listen 8042, ->
