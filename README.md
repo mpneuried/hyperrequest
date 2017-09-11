@@ -74,6 +74,7 @@ hrrequest( opts, function( err, resp ){
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
+|0.1.4|2017-09-11|fixed dev dependency version |
 |0.1.3|2017-09-11|fixed another bug when receiving an empty or defect content-type;|
 |0.1.2|2017-01-19|fixed bug when receiving no content-type; Updated and optimized dev env.|
 |0.1.1|2016-05-25|fixed handling of empty content 204|
